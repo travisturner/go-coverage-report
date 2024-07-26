@@ -92,10 +92,10 @@ mv "/tmp/gh-run-download-$GITHUB_RUN_ID/$COVERAGE_FILE_NAME" $NEW_COVERAGE_PATH
 rm -r "/tmp/gh-run-download-$GITHUB_RUN_ID"
 end_group
 
-start_group "Download code coverage results from target branch"
+start_group "Download code coverage results from target branch (main)"
 LAST_SUCCESSFUL_RUN_ID=$(gh run list --status=success --branch="$TARGET_BRANCH" --workflow="$GITHUB_WORKFLOW" --event=push --json=databaseId --limit=1 -q '.[] | .databaseId')
 if [ -z "$LAST_SUCCESSFUL_RUN_ID" ]; then
-  echo "::error::No successful run found on the target branch"
+  echo "::error::No successful run found on the target branch (main)"
   exit 1
 fi
 
